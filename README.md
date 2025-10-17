@@ -8,3 +8,6 @@ Test SOVD functionality in AGL with simple HVAC app
 # Requirement
 - pip install -r requirements.txt
 - 
+
+# Run Microservice
+- python hvac_app/main.py
