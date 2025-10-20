@@ -6,7 +6,7 @@ from flask import Flask
 # Add the package directory to Python path
 sys.path.insert(0, '/usr/lib/python3.9/site-packages')
 
-from hvac_interface.routes import routes
+from hvac_app.hvac_interface.routes import routes
 
 # Init app
 app = Flask(__name__)

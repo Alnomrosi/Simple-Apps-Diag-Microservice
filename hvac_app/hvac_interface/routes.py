@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from data_model.model import Temprature
-from hvac_interface.diag_information import DiagLocations, DiagNames
+from hvac_app.data_model.model import Temprature
+from hvac_app.hvac_interface.diag_information import DiagLocations, DiagNames
 import yaml
 
 routes = Blueprint('routes', __name__)
