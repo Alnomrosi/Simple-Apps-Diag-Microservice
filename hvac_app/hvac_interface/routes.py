@@ -1,15 +1,22 @@
 from flask import Blueprint, request, jsonify
 from data_model.model import Temprature
+from hvac_interface.diag_information import DiagLocations, DiagNames
 import yaml
-
-HVAC_DIAG_LOC = r"data_model/hvac_model"
 
 routes = Blueprint('routes', __name__)
 
 # app/app-id/data
-@routes.route('/hvac/temperature/<zone>', methods=['GET'])
-def hvac_get_tempratures(zone):
-    """Return all data of temperature but no values"""
-    data = "0"
+@routes.route('/hvac/data', methods=['GET'])
+def hvac_get_tempratures():
+    """Return information about the available data to be diagnostic inside HVAC CONTROL Application"""
 
-    return data
+    hvac_diag = 0
+    data = {}
+    # Reading a YAML file
+    with open(DiagLocations.HVAC_GEN_DATA_DIAG_LOC, 'r') as file:
+        hvac_diag = yaml.safe_load(file) 
+    
+    data_diag = hvac_diag["HvacControl"]
+    yaml_output = yaml.dump(data_diag, default_flow_style=False)
+
+    return yaml_output

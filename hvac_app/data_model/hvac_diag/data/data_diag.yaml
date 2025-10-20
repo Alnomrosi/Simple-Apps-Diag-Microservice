@@ -1,0 +1,8 @@
+HvacControl:
+  data:
+    RearHvacTemp:
+        RearLeftHvac: 0
+        RearRightHvac: 0
+    FrontHvacTemp:
+        FrontLeftHvac: 0
+        FrontRightHvac: 0

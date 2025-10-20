@@ -1,0 +1,10 @@
+HvacControl:
+  data:
+    RearHvacTemp:
+      name: Rear Hvac temprature
+      category: currentdata
+      group: rear
+    FrontHvacTemp:
+      name: Front Hvac temprature
+      category: currentdata
+      group: front
