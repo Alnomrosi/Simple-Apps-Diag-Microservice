@@ -3,8 +3,8 @@ import os
 import sys
 from flask import Flask
 
-# Ensure Python can find your hvac_interface package
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# Add the package directory to Python path
+sys.path.insert(0, '/usr/lib/python3.9/site-packages')
 
 from hvac_interface.routes import routes
 
