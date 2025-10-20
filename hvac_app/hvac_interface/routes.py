@@ -5,7 +5,7 @@ import yaml
 
 routes = Blueprint('routes', __name__)
 
-# app/app-id/data
+# app/data
 @routes.route('/hvac/data', methods=['GET'])
 def hvac_get_tempratures():
     """Return information about the available data to be diagnostic inside HVAC CONTROL Application"""
