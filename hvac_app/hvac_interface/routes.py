@@ -20,7 +20,6 @@ def hvac_get_tempratures():
     """Return information about the available data to be diagnostic inside HVAC CONTROL Application"""
 
     hvac_diag = 0
-    json_output = ""
     # Reading a YAML file
     with open(DiagLocations.HVAC_GEN_DATA_DIAG_LOC, 'r') as file:
         hvac_diag = yaml.safe_load(file)
