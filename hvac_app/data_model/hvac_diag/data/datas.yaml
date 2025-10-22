@@ -1,0 +1,30 @@
+HvacControl:
+  data:
+    - id: RearHvacTemp
+      name: Rear Hvac temprature
+      category: currentdata
+      group: rear
+      data:
+        RearLeftTemp: 0
+        RearRightTemp: 0
+    - id: RearHvacFanSpeed
+      name: Rear Hvac Fan Speed 
+      category: currentdata
+      group: rear
+      data:
+        RearLeftFanSpeed: 0
+        RearRightFanSpeed: 0
+    - id: FrontHvacTemp
+      name: Front Hvac temprature
+      category: currentdata
+      group: front
+      data:
+        FrontLeftTemp: 0
+        FrontRightTemp: 0
+    - id: FrontHvacFanSpeed
+      name: Front Hvac Fan Speed 
+      category: currentdata
+      group: Front
+      data:
+        FrontLeftFanSpeed: 0
+        FrontRightFanSpeed: 0
