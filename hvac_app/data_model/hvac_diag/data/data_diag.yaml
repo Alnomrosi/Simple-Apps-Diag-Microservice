@@ -1,8 +1,14 @@
 HvacControl:
   data:
     RearHvacTemp:
-        RearLeftHvac: 0
-        RearRightHvac: 0
+      RearLeftTemp: 0
+      RearRightTemp: 0
+    RearHvaFanSpeed:
+      RearLeftFanSpeed: 0
+      RearRightFanSpeed: 0
     FrontHvacTemp:
-        FrontLeftHvac: 0
-        FrontRightHvac: 0
+      FrontLeftHvac: 0
+      FrontRightHvac: 0
+    FrontHvacTemp:
+      FrontLeftFanSpeed: 0
+      FrontRightFanSpeed: 0
