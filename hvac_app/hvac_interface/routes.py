@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 import yaml
 import os
 
-MODE = os.getenv("APP_MODE", "DEPLOYMENT")  # or MODE = "DEPLOYMENT"
+MODE = os.getenv("APP_MODE", "TESTING")  # or MODE = "DEPLOYMENT"
 
 if MODE == "DEPLOYMENT":
     from hvac_app.data_model.model import Temprature

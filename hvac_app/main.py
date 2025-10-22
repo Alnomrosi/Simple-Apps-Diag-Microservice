@@ -3,7 +3,7 @@ import os
 import sys
 from flask import Flask
 
-MODE = os.getenv("APP_MODE", "DEPLOYMENT")  # or MODE = "DEPLOYMENT"
+MODE = os.getenv("APP_MODE", "TESTING")  # or MODE = "DEPLOYMENT"
 
 # Add the package directory to Python path
 sys.path.insert(0, '/usr/lib/python3.9/site-packages')
