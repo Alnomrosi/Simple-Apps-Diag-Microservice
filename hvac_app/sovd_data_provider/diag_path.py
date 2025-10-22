@@ -6,6 +6,6 @@ class AppNames():
 
 class DataDiagLocations():
     if MODE == "DEPLOYMENT": 
-        hvac = "lib/python3/site-packages/hvac_app/data_model/hvac_diag/data/general_diag.yaml"
+        hvac = "lib/python3/site-packages/hvac_app/data_model/hvac_diag/data/datas.yaml"
     elif MODE == "TESTING":
         hvac = "hvac_app/data_model/hvac_diag/data/datas.yaml"
