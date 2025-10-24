@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, Response
 import os
 import requests
 
@@ -27,9 +27,16 @@ def get_datas_from_application(app_id:str):
 @routes.route("/<app_id>/data/<data_id>", methods=['GET'])
 def set_data_id_from_application(app_id:str,data_id:str):
     try:
-        r = requests.get("http://127.0.0.1:6000/hvac/FrontLeftTemp", timeout=1.0)
-        r.raise_for_status()
-        return (r.text, r.headers.get('Content-Type', 'application/json'))
+        # Send request to your local C++ HTTP service
+        resp = requests.get("http://127.0.0.1:6000/hvac/FrontLeftTemp", timeout=1.0)
+        resp.raise_for_status()
+
+        # Return same response and content type to client
+        return Response(resp.text, content_type=resp.headers.get("Content-Type", "application/json"))
+
     except requests.RequestException as e:
-        return jsonify({"error": "failed to reach hvac service", "details": str(e)}), 502
+        return jsonify({
+            "error": "Failed to reach HVAC service",
+            "details": str(e)
+        }), 502
     
