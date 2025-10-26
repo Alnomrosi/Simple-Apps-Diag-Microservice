@@ -25,18 +25,25 @@ def get_datas_from_application(app_id:str):
     return app_data
 
 @routes.route("/<app_id>/data/<data_id>", methods=['GET'])
-def set_data_id_from_application(app_id:str,data_id:str):
+def get_data_id_from_application(app_id:str,data_id:str):
+
+    data_entry = data_provider.get_data_by_id(app_id, data_id)
+
+    return data_entry
+
+    app_url = "http://127.0.0.1:6000/" + app_id + "/data/" + data_id
     try:
-        # Send request to your local C++ HTTP service
-        resp = requests.get("http://127.0.0.1:6000/hvac/FrontLeftTemp", timeout=1.0)
+        # Send request to the local C++ HTTP service e.g hvac
+        resp = requests.get("http://127.0.0.1:6000/hvac/data/FrontTemp", timeout=1.0)
         resp.raise_for_status()
 
-        # Return same response and content type to client
-        return Response(resp.text, content_type=resp.headers.get("Content-Type", "application/json"))
+        # Return same response and content type to client return Response(resp.text, content_type=resp.headers.get("Content-Type", "application/json"))
 
     except requests.RequestException as e:
         return jsonify({
             "error": "Failed to reach HVAC service",
             "details": str(e)
         }), 502
+    
+    
     
