@@ -5,9 +5,9 @@ import requests
 MODE = os.getenv("APP_MODE", "TESTING")  # or MODE = "DEPLOYMENT"
 
 if MODE == "DEPLOYMENT":
-    from hvac_app.sovd_data_provider.data_provider import DataProvider
+    from diag_app.apps_interface.data.data_provider import DataProvider
 if MODE == "TESTING":
-    from sovd_data_provider.data_provider import DataProvider
+    from apps_interface.data.data_provider import DataProvider
 
 routes = Blueprint('routes', __name__)
 

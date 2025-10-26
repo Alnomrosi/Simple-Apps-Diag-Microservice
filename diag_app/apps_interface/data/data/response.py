@@ -5,9 +5,9 @@ from pydantic import BaseModel
 MODE = os.getenv("APP_MODE", "TESTING")  # or MODE = "DEPLOYMENT"
 
 if MODE == "DEPLOYMENT":
-    from hvac_app.data_model.common.types import ValueMetaData
+    from diag_app.apps_interface.data.common.types import ValueMetaData
 if MODE == "TESTING":
-    from data_model.common.types import ValueMetaData
+    from apps_interface.data.common.types import ValueMetaData
 
 
 class Datas(BaseModel):

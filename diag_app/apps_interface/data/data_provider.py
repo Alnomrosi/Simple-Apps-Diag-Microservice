@@ -5,13 +5,13 @@ import yaml
 MODE = os.getenv("APP_MODE", "TESTING")  # or MODE = "DEPLOYMENT"
 
 if MODE == "DEPLOYMENT":
-    from hvac_app.sovd_data_provider.diag_path import DataDiagLocations, AppNames
-    from hvac_app.data_model.common.types import ValueMetaData
-    from hvac_app.data_model.data.response import Datas
+    from diag_app.apps_interface.data.diag_path import DataDiagLocations, AppNames
+    from diag_app.apps_interface.data.common.types import ValueMetaData
+    from diag_app.apps_interface.data.data.response import Datas
 if MODE == "TESTING":
-    from sovd_data_provider.diag_path import DataDiagLocations, AppNames
-    from data_model.common.types import ValueMetaData
-    from data_model.data.response import Datas
+    from apps_interface.data.diag_path import DataDiagLocations, AppNames
+    from apps_interface.data.common.types import ValueMetaData
+    from apps_interface.data.data.response import Datas
 
 class DataProvider:
     def __init__(self):

@@ -9,9 +9,9 @@ MODE = os.getenv("APP_MODE", "TESTING")  # or MODE = "DEPLOYMENT"
 sys.path.insert(0, '/usr/lib/python3.9/site-packages')
 
 if MODE == "DEPLOYMENT":
-    from hvac_app.hvac_interface.routes import routes
+    from diag_app.apps_interface.routes import routes
 if MODE == "TESTING":
-    from hvac_interface.routes import routes
+    from apps_interface.routes import routes
 
 
 # Init app
