@@ -22,7 +22,7 @@ class DataProvider:
         datas = []
         diag_path = getattr(DataDiagLocations, app_id)
         
-        # Reading data/general_diag YAML file
+        # Reading data/xx.yaml YAML file
         with open(diag_path, 'r') as file:
             app_diag_yaml = yaml.safe_load(file)
     
