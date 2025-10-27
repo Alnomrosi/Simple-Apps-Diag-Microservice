@@ -24,5 +24,4 @@ class ReadValue(BaseModel):
     id: str
     data: Any
     errors: Optional[List[DataError]] = None
-    schema: Optional[Any] = None
 

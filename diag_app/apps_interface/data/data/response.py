@@ -14,7 +14,7 @@ class Datas(BaseModel):
     """Response: Retrieve list of all data provided by the entity"""
 
     items: List[ValueMetaData] = []
-    schema: Optional[Any] = None
+    #schema: Optional[Any] = None
 
 
 
@@ -22,4 +22,4 @@ class DataValue(ReadValue):
     """Response: Read single data value from an entity"""
     id: str
     data: Any
-    schema: Optional[Any] = None
+    #schema: Optional[Any] = None
