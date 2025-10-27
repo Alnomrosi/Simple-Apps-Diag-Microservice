@@ -16,7 +16,7 @@ routes = Blueprint('routes', __name__)
 ########
 data_provider = DataProvider()
 # app-id/data
-@routes.route("/<app_id>/data", methods=['GET'])
+@routes.route("apps/<app_id>/data", methods=['GET'])
 def get_datas_from_application(app_id:str):
     """Return information about the available data to be diagnostic inside HVAC CONTROL Application"""
     app_data = 0
@@ -24,7 +24,7 @@ def get_datas_from_application(app_id:str):
     app_data = data_provider.get_dids(app_id)
     return app_data
 
-@routes.route("/<app_id>/data/<data_id>", methods=['GET'])
+@routes.route("apps/<app_id>/data/<data_id>", methods=['GET'])
 def get_data_id_from_application(app_id:str,data_id:str):
 
     data_entry = data_provider.get_data_by_id(app_id, data_id)
