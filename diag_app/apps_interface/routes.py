@@ -5,7 +5,7 @@ import requests
 MODE = os.getenv("APP_MODE", "TESTING")  # or MODE = "DEPLOYMENT"
 
 if MODE == "DEPLOYMENT":
-    from diag_app.apps_interface.data.data_provider import DataProvider
+    from diag_app.apps_interface.data.data_provider import DataProvider, APPs_ADDR
     from diag_app.apps_interface.data.data_saver import DataSaver
 if MODE == "TESTING":
     from apps_interface.data.data_provider import DataProvider, APPs_ADDR
