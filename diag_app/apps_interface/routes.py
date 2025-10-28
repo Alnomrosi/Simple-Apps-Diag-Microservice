@@ -32,7 +32,8 @@ def get_data_id_from_application(app_id:str,data_id:str):
     #
     #  get the server uri
     app_uri = APPs_ADDR[app_id]
-    app_url = app_uri + "/" + app_id + "/data/" + data_id
+    app_url = app_uri + "apps/" + app_id + "/data/" + data_id
+    print(app_url)
     try:
         # Send request to the local C++ HTTP service e.g hvac
         Data_resp = requests.get(app_url, timeout=1.0)
