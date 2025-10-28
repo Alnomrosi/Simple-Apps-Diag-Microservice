@@ -13,6 +13,8 @@ if MODE == "TESTING":
     from apps_interface.data.common.types import ValueMetaData
     from apps_interface.data.data.response import Datas, DataValue
 
+APPs_ADDR = {"hvac":"http://127.0.0.1:6000/"}
+
 class DataProvider:
     def __init__(self):
         pass
@@ -26,9 +28,9 @@ class DataProvider:
         with open(diag_path, 'r') as file:
             app_diag_yaml = yaml.safe_load(file)
     
-        data_diag = app_diag_yaml[AppNames.hvac]
+        # data_diag = app_diag_yaml[AppNames.hvac]
 
-        for data in data_diag['data']:
+        for data in app_diag_yaml['data']:
             datas.append(ValueMetaData.model_validate(data))
         
         resp_data = Datas(items=datas)
@@ -42,9 +44,9 @@ class DataProvider:
         with open(diag_path,'r') as file:
             app_data = yaml.safe_load(file)
 
-        App_Data = app_data[AppNames.hvac]
+        # App_Data = app_data[AppNames.hvac]
 
-        for data in App_Data['data']:
+        for data in app_data['data']:
             if data_id == data.get('id'):
                 data_value.update(DataValue.model_validate(data)) 
 

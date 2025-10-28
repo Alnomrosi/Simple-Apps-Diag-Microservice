@@ -6,15 +6,18 @@ MODE = os.getenv("APP_MODE", "TESTING")  # or MODE = "DEPLOYMENT"
 
 if MODE == "DEPLOYMENT":
     from diag_app.apps_interface.data.data_provider import DataProvider
+    from diag_app.apps_interface.data.data_saver import DataSaver
 if MODE == "TESTING":
-    from apps_interface.data.data_provider import DataProvider
+    from apps_interface.data.data_provider import DataProvider, APPs_ADDR
+    from apps_interface.data.data_saver import DataSaver
 
 routes = Blueprint('routes', __name__)
 
+data_provider = DataProvider()
+data_saver = DataSaver()
 ########
 # DATA #
 ########
-data_provider = DataProvider()
 # app-id/data
 @routes.route("/apps/<app_id>/data", methods=['GET'])
 def get_datas_from_application(app_id:str):
@@ -26,24 +29,26 @@ def get_datas_from_application(app_id:str):
 
 @routes.route("/apps/<app_id>/data/<data_id>", methods=['GET'])
 def get_data_id_from_application(app_id:str,data_id:str):
-
-    data_entry = data_provider.get_data_by_id(app_id, data_id)
-
-    return data_entry
-
-    app_url = "http://127.0.0.1:6000/" + app_id + "/data/" + data_id
+    #
+    #  get the server uri
+    app_uri = APPs_ADDR[app_id]
+    app_url = app_uri + "/" + app_id + "/data/" + data_id
     try:
         # Send request to the local C++ HTTP service e.g hvac
-        resp = requests.get("http://127.0.0.1:6000/hvac/data/FrontTemp", timeout=1.0)
-        resp.raise_for_status()
+        Data_resp = requests.get(app_url, timeout=1.0)
+        Data_resp.raise_for_status()
 
-        # Return same response and content type to client return Response(resp.text, content_type=resp.headers.get("Content-Type", "application/json"))
+        # save data to yaml format with data_saver
+        data_saver.save_data_by_data_id(app_id,data_id,Data_resp)
+        # get_data_by_id with data_provider
+        data_entry = data_provider.get_data_by_id(app_id, data_id)
+
+       # Return same response and content type to client return Response(resp.text, content_type=resp.headers.get("Content-Type", "application/json"))
+        return data_entry
 
     except requests.RequestException as e:
         return jsonify({
-            "error": "Failed to reach HVAC service",
+            "error": "Failed to reach Application Server",
             "details": str(e)
         }), 502
-    
-    
     
