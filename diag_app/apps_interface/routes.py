@@ -40,7 +40,7 @@ def get_data_id_from_application(app_id:str,data_id:str):
         Data_resp.raise_for_status()
 
         # save data to yaml format with data_saver
-        data_saver.save_data_by_data_id(app_id,data_id,Data_resp)
+        data_saver.save_data_by_data_id(app_id,data_id,Data_resp.json())
         # get_data_by_id with data_provider
         data_entry = data_provider.get_data_by_id(app_id, data_id)
 
