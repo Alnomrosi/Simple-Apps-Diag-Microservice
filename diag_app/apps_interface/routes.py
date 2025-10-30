@@ -29,11 +29,10 @@ def get_datas_from_application(app_id:str):
 
 @routes.route("/apps/<app_id>/data/<data_id>", methods=['GET'])
 def get_data_id_from_application(app_id:str,data_id:str):
-    #
+    """Return data inside Application"""
     #  get the server uri
     app_uri = APPs_ADDR[app_id]
     app_url = app_uri + "apps/" + app_id + "/data/" + data_id
-    print(app_url)
     try:
         # Send request to the local C++ HTTP service e.g hvac
         Data_resp = requests.get(app_url, timeout=1.0)
@@ -52,4 +51,32 @@ def get_data_id_from_application(app_id:str,data_id:str):
             "error": "Failed to reach Application Server",
             "details": str(e)
         }), 502
+
+
+@routes.route("/apps/<app_id>/data/<data_id>", methods=['PUT'])
+def put_data_id_to_application(app_id:str,data_id:str):
+    """Update data inside Application"""
+    # get the server uri
+    app_uri = APPs_ADDR[app_id]
+    app_url = app_uri + "apps/" + app_id + "/data/" + data_id
     
+    try:
+        # Get new data from request body
+        new_data = request.get_json(force=True, silent=False)
+        
+        # Send PUT request to the local C++ HTTP service e.g hvac
+        Data_resp = requests.put(app_url, json=new_data, timeout=1.0)
+        Data_resp.raise_for_status()
+
+        # save data to yaml format with data_saver
+        data_saver.save_data_by_data_id(app_id,data_id,new_data)
+
+        return jsonify({
+            "message": "Data updated successfully in Application"
+        }), 200
+
+    except requests.RequestException as e:
+        return jsonify({
+            "error": "Failed to reach Application Server",
+            "details": str(e)
+        }), 502
