@@ -5,13 +5,17 @@ import yaml
 MODE = os.getenv("APP_MODE", "TESTING")  # or MODE = "DEPLOYMENT"
 
 if MODE == "DEPLOYMENT":
-    from diag_app.apps_interface.data.diag_path import DataDiagLocations, AppNames
+    from diag_app.apps_interface.data.diag_path import DataDiagLocations, FaultsDiagLocations
     from diag_app.apps_interface.data.common.types import ValueMetaData
     from diag_app.apps_interface.data.data.response import Datas, DataValue
+    from diag_app.apps_interface.data.faults.types import Fault
+    from diag_app.apps_interface.data.faults.response import ListOfFaults
 if MODE == "TESTING":
-    from apps_interface.data.diag_path import DataDiagLocations, AppNames
+    from apps_interface.data.diag_path import DataDiagLocations, FaultsDiagLocations
     from apps_interface.data.common.types import ValueMetaData
     from apps_interface.data.data.response import Datas, DataValue
+    from apps_interface.data.faults.types import Fault
+    from apps_interface.data.faults.response import ListOfFaults
 
 APPs_ADDR = {"hvac":"http://127.0.0.1:6000/"}
 
@@ -51,3 +55,23 @@ class DataProvider:
                 data_value.update(DataValue.model_validate(data)) 
 
         return data_value
+    
+
+    # faults
+
+    def get_faults(self, app_id:str):
+        faults = []
+        diag_path = getattr(FaultsDiagLocations, app_id)
+        
+        # Reading data/xx.yaml YAML file
+        with open(diag_path, 'r') as file:
+            app_diag_yaml = yaml.safe_load(file)
+    
+        # data_diag = app_diag_yaml[AppNames.hvac]
+
+        for faults_details in app_diag_yaml['faults']:
+            faults.append(Fault.model_validate(faults_details))
+        
+        resp_faults = ListOfFaults(items=faults)
+
+        return resp_faults.model_dump()

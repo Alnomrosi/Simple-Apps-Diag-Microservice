@@ -4,7 +4,8 @@ faults:
     display_code: "Temp Err 1"
     fault_name: "Exceeded Temperature Threshold"
     severity: WARN
-    status: inactive
+    status: 
+      aggregatedStatus : "inactive"
     symptom: "The HVAC system has detected that the front temperature has exceeded the predefined threshold"
     symptom_translation_id: hvac_symptom_exceeded_temp_threshold
   - code: "NoTempDectected"
@@ -12,6 +13,7 @@ faults:
     display_code: Temp Err 2"
     fault_name: "No Temperature Detected"
     severity: WARN
-    status: inactive
+    status:
+      aggregatedStatus : "inactive"
     symptom: "The HVAC system can not change temperature"
     symptom_translation_id: hvac_symptom_no_temp_detected

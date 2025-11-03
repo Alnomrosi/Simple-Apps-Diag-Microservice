@@ -85,3 +85,10 @@ def put_data_id_to_application(app_id:str,data_id:str):
 ##########
 # Faults #
 ##########
+@routes.route("/apps/<app_id>/faults", methods=['GET'])
+def get_faults_of_application(app_id:str):
+    """Return information about the available data to be diagnostic inside HVAC CONTROL Application"""
+    app_faults = 0
+    # Reading data/general_diag YAML file
+    app_faults = data_provider.get_faults(app_id)
+    return app_faults
