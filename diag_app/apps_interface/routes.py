@@ -80,3 +80,8 @@ def put_data_id_to_application(app_id:str,data_id:str):
             "error": "Failed to reach Application Server",
             "details": str(e)
         }), 502
+    
+
+##########
+# Faults #
+##########

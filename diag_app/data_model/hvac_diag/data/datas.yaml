@@ -1,34 +1,35 @@
 data:
-- category: currentdata
+- id: FrontTemp
+  name: Front Hvac temprature
+  category: currentdata
   data:
     FrontLeftTemp: '20'
     FrontRightTemp: '21'
   group: Front
-  id: FrontTemp
-  name: Front Hvac temprature
-- category: currentdata
+- id: FrontFanSpeed
+  name: Front Hvac Fan Speed
+  category: currentdata
   data:
     FrontLeftFanSpeed: 0
     FrontRightFanSpeed: 0
   group: Front
-  id: FrontFanSpeed
-  name: Front Hvac Fan Speed
-- category: currentdata
+- id: HvacDefrostStatus
+  name: Front Hvac defrost status
+  category: currentdata
   data:
     FrontDefrost: 'off'
     RearDefrost: 'off'
   group: Front_Left
-  id: HvacDefrostStatus
+- id: HvacRecirculationStatus
   name: Front Hvac defrost status
-- category: currentdata
+  category: currentdata
   data:
     HvacRecirculation: off"
   group: Front
-  id: HvacRecirculationStatus
-  name: Front Hvac defrost status
-- category: currentdata
+- id: FrontAcButtonStatus
+  name: Front AC button status
+  category: currentdata
   data:
     HvacRecirculation: 'off'
   group: Front
-  id: FrontAcButtonStatus
-  name: Front AC button status
+
