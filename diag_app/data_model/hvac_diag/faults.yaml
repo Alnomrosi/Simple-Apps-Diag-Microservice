@@ -6,7 +6,7 @@ faults:
     severity: WARN
     status: 
       aggregatedStatus : "inactive"
-    symptom: "The HVAC system has detected that the front temperature has exceeded the predefined threshold"
+    symptom: "The Front HVAC system exceeded the threshold temperature"
     symptom_translation_id: hvac_symptom_exceeded_temp_threshold
   - code: "NoTempDectected"
     scope: hvac
