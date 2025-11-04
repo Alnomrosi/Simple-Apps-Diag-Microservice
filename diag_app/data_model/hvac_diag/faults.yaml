@@ -1,16 +1,25 @@
 faults:
-  - code: FrontTempExceeded
+  - code: FrontLeftTempExceeded
     scope: hvac
-    display_code: "Temp Err 1"
-    fault_name: "Exceeded Temperature Threshold"
+    display_code: "Err1"
+    fault_name: "Left Temp Exceeded Temperature Threshold"
     severity: WARN
     status: 
       aggregatedStatus : "inactive"
-    symptom: "The Front HVAC system exceeded the threshold temperature"
+    symptom: "The Front left HVAC system exceeded the threshold temperature"
+    symptom_translation_id: hvac_symptom_exceeded_temp_threshold
+  - code: FrontRightTempExceeded
+    scope: hvac
+    display_code: "Err2"
+    fault_name: "Right Temp Exceeded Temperature Threshold"
+    severity: WARN
+    status: 
+      aggregatedStatus : "inactive"
+    symptom: "The Front right HVAC system exceeded the threshold temperature"
     symptom_translation_id: hvac_symptom_exceeded_temp_threshold
   - code: "NoTempDectected"
     scope: hvac
-    display_code: Temp Err 2"
+    display_code: Err3"
     fault_name: "No Temperature Detected"
     severity: WARN
     status:
