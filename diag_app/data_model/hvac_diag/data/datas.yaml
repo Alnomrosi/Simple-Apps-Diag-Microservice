@@ -3,14 +3,14 @@ data:
   name: Front Hvac temprature
   category: currentdata
   data:
-    FrontLeftTemp: '20'
-    FrontRightTemp: '21'
+    FrontLeftTemp: '15'
+    FrontRightTemp: '15'
   group: Front
 - id: FrontFanSpeed
   name: Front Hvac Fan Speed
   category: currentdata
   data:
-    FrontLeftFanSpeed: 0
+    FrontLeftFanSpeed: 0 
     FrontRightFanSpeed: 0
   group: Front
 - id: HvacDefrostStatus
