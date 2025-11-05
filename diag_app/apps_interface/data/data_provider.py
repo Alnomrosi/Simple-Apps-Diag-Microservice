@@ -75,3 +75,20 @@ class DataProvider:
         resp_faults = ListOfFaults(items=faults)
 
         return resp_faults.model_dump()
+    
+    def get_singlefaults(self, app_id:str, fault_id:id):
+        faults = []
+        diag_path = getattr(FaultsDiagLocations, app_id)
+
+        # Reading data/xx.yaml YAML file
+        with open(diag_path, 'r') as file:
+            app_diag_yaml = yaml.safe_load(file)
+
+        for faults_details in app_diag_yaml['faults']:
+            if faults_details.get('code') == fault_id:
+                faults.append(Fault.model_validate(faults_details))
+        
+        resp_faults = ListOfFaults(items=faults)
+
+        return resp_faults.model_dump()
+ 

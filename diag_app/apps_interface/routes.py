@@ -92,3 +92,11 @@ def get_faults_of_application(app_id:str):
     # Reading data/general_diag YAML file
     app_faults = data_provider.get_faults(app_id)
     return app_faults
+
+@routes.route("/apps/<app_id>/faults/<fault_id>", methods=['GET'])
+def get_Singe_fault_of_application(app_id:str, fault_id:str):
+    """Return information about the available data to be diagnostic inside HVAC CONTROL Application"""
+    app_faults = 0
+    # Reading data/general_diag YAML file
+    app_faults = data_provider.get_singlefaults(app_id,fault_id)
+    return app_faults
