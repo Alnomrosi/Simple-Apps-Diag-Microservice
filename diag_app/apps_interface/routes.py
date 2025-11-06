@@ -72,8 +72,8 @@ def put_data_id_to_application(app_id:str,data_id:str):
         data_saver.save_data_by_data_id(app_id,data_id,new_data)
 
         return jsonify({
-            "message": "Data updated successfully in Application"
-        }), 200
+            "HTTP/1.1 204 No Content"
+        }), 204
 
     except requests.RequestException as e:
         return jsonify({
@@ -100,3 +100,18 @@ def get_Singe_fault_of_application(app_id:str, fault_id:str):
     # Reading data/general_diag YAML file
     app_faults = data_provider.get_singlefaults(app_id,fault_id)
     return app_faults
+
+@routes.route("/apps/<app_id>/faults", methods=['DELETE'])
+def delete_faults_of_application(app_id:str):
+    """Return information about the available data to be diagnostic inside HVAC CONTROL Application"""
+    try:
+        # delete faults
+        del_faults_resp = data_provider.delete_faults(app_id)
+        
+        return Response(status=204)
+    
+    except requests.RequestException as e:
+        return jsonify({
+            "error": "Failed to reach Application Server",
+            "details": str(e)
+        }), 502

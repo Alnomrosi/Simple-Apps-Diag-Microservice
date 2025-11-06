@@ -80,7 +80,7 @@ class DataProvider:
         faults = []
         diag_path = getattr(FaultsDiagLocations, app_id)
 
-        # Reading data/xx.yaml YAML file
+        # Reading faults/xx.yaml YAML file
         with open(diag_path, 'r') as file:
             app_diag_yaml = yaml.safe_load(file)
 
@@ -91,4 +91,20 @@ class DataProvider:
         resp_faults = ListOfFaults(items=faults)
 
         return resp_faults.model_dump()
- 
+    
+    def delete_faults(self, app_id:str):
+        diag_path = getattr(FaultsDiagLocations, app_id)
+        faults = []
+
+        # Reading faults/xx.yaml YAML file
+        with open(diag_path, 'r') as file:
+            app_diag_yaml = yaml.safe_load(file)
+        
+        for faults_details in app_diag_yaml.get('faults', []):
+            if faults_details.get('status') and faults_details['status']['aggregatedStatus'] == 'active':
+                    faults_details['status']['aggregatedStatus'] = 'inactive'
+
+        with open(diag_path,'w') as file:
+            yaml.dump(app_diag_yaml, file)
+        
+        return True
