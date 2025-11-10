@@ -23,24 +23,14 @@ data_saver = DataSaver()
 def get_datas_from_application(app_id:str):
     """Return information about the available data to be diagnostic inside HVAC CONTROL Application"""
     app_data = 0
-    # Reading data/general_diag YAML file
+    # Reading apps data YAML file
     app_data = data_provider.get_dids(app_id)
     return app_data
 
 @routes.route("/apps/<app_id>/data/<data_id>", methods=['GET'])
 def get_data_id_from_application(app_id:str,data_id:str):
     """Return data inside Application"""
-    #  get the server uri
-#    app_uri = APPs_ADDR[app_id]
-#    app_url = app_uri + "apps/" + app_id + "/data/" + data_id
     try:
-        # Send request to the local C++ HTTP service e.g hvac
-#        Data_resp = requests.get(app_url, timeout=1.0)
-#        Data_resp.raise_for_status()
-
-        # save data to yaml format with data_saver
-#        data_saver.save_data_by_data_id(app_id,data_id,Data_resp.json())
-        # get_data_by_id with data_provider
         data_entry = data_provider.get_data_by_id(app_id, data_id)
 
        # Return same response and content type to client return Response(resp.text, content_type=resp.headers.get("Content-Type", "application/json"))
@@ -81,6 +71,13 @@ def put_data_id_to_application(app_id:str,data_id:str):
             "details": str(e)
         }), 502
     
+# component-id/data
+@routes.route("/components/<component_id>/data", methods=['GET'])
+def get_datas_from_component(component_id:str):
+    """Return information about the available data to be diagnostic inside HVAC CONTROL Application"""
+    # Reading components data YAML file
+    comp_data = "Nothing to provide"
+    return comp_data
 
 ##########
 # Faults #
