@@ -30,3 +30,10 @@ class DataSaver():
             yaml.dump(app_diag_yaml, file, default_flow_style=False)
 
         return 0
+    
+class ComponentDataSaver():
+    def __init__(self):
+        pass
+
+    def save_data_by_id(self, app_id:str, data_id:str,New_data:str):
+        pass

@@ -5,15 +5,16 @@ import requests
 MODE = os.getenv("APP_MODE", "TESTING")  # or MODE = "DEPLOYMENT"
 
 if MODE == "DEPLOYMENT":
-    from diag_app.apps_interface.data.data_provider import DataProvider, APPs_ADDR
+    from diag_app.apps_interface.data.data_provider import DataProvider,ComponentsDataProvider, APPs_ADDR
     from diag_app.apps_interface.data.data_saver import DataSaver
 if MODE == "TESTING":
-    from apps_interface.data.data_provider import DataProvider, APPs_ADDR
+    from apps_interface.data.data_provider import DataProvider, ComponentsDataProvider, APPs_ADDR
     from apps_interface.data.data_saver import DataSaver
 
 routes = Blueprint('routes', __name__)
 
 data_provider = DataProvider()
+component_provider = ComponentsDataProvider()
 data_saver = DataSaver()
 ########
 # DATA #
@@ -76,7 +77,8 @@ def put_data_id_to_application(app_id:str,data_id:str):
 def get_datas_from_component(component_id:str):
     """Return information about the available data to be diagnostic inside HVAC CONTROL Application"""
     # Reading components data YAML file
-    comp_data = "Nothing to provide"
+    comp_data = component_provider.get_component_datas(component_id)
+
     return comp_data
 
 ##########

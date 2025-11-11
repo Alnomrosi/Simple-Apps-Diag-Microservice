@@ -1,0 +1,7 @@
+data: 
+  - id: cpuload
+    name: CPU Load
+    category: currentdata
+    data:
+      load: 'null'
+    group: virtual machine

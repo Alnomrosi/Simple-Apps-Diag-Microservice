@@ -1,6 +1,8 @@
 import os
 from typing import List
 import yaml
+import psutil
+import sys
 
 MODE = os.getenv("APP_MODE", "TESTING")  # or MODE = "DEPLOYMENT"
 
@@ -16,6 +18,7 @@ if MODE == "TESTING":
     from apps_interface.data.data.response import Datas, DataValue
     from apps_interface.data.faults.types import Fault
     from apps_interface.data.faults.response import ListOfFaults
+    from apps_interface.data.os_info.os_data import get_cpu_load
 
 APPs_ADDR = {"hvac":"http://127.0.0.1:6000/"}
 
@@ -108,3 +111,18 @@ class DataProvider:
             yaml.dump(app_diag_yaml, file)
         
         return True
+    
+
+class ComponentsDataProvider:
+    def __init__(self):
+        pass
+
+    def get_component_datas(self, component_id:str):
+
+        diag_path = getattr(FaultsDiagLocations, component_id)
+        comp_data = "Nothing to provide"
+        comp_data = get_cpu_load(interval=1)
+
+        
+        return str(comp_data)
+

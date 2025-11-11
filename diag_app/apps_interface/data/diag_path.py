@@ -6,13 +6,22 @@ class AppNames():
 
 class DataDiagLocations():
     if MODE == "DEPLOYMENT": 
-        hvac = "var/diagnostics/apps/data_model/hvac_diag/data/datas.yaml"
+        # Apps
+        hvac = "var/diagnostics/data_model/apps/hvac_diag/data.yaml"
+
+        # Components
+        agl = "var/diagnostics/data_model/components/agl_diag/data.yaml"
     elif MODE == "TESTING":
-        hvac = "diag_app/data_model/hvac_diag/data/datas.yaml"
+        # Apps
+        hvac = "diag_app/data_model/apps/hvac_diag/data.yaml"
+
+        # Components
+        agl = "diag_app/data_model/components/agl_diag/data.yaml"
 
 
 class FaultsDiagLocations():
-    if MODE == "DEPLOYMENT": 
-        hvac = "var/diagnostics/apps/data_model/hvac_diag/faults.yaml"
+    if MODE == "DEPLOYMENT":
+        # Apps
+        hvac = "var/diagnostics/data_model/apps/hvac_diag/faults.yaml"
     elif MODE == "TESTING":
-        hvac = "diag_app/data_model/hvac_diag/faults.yaml"
+        hvac = "diag_app/data_model/apps/hvac_diag/faults.yaml"
