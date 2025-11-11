@@ -1,7 +1,7 @@
-data: 
-  - id: cpuload
-    name: CPU Load
-    category: currentdata
-    data:
-      load: 'null'
-    group: virtual machine
+data:
+- category: currentdata
+  data:
+    load Percentage: 0.3
+  group: virtual machine
+  id: cpuload
+  name: CPU Load

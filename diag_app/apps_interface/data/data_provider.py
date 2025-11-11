@@ -27,9 +27,9 @@ class DataProvider:
         pass
     
     # data
-    def get_dids(self, app_id:str):
+    def get_dids(self, entity_id:str):
         datas = []
-        diag_path = getattr(DataDiagLocations, app_id)
+        diag_path = getattr(DataDiagLocations, entity_id)
         
         # Reading data/xx.yaml YAML file
         with open(diag_path, 'r') as file:
@@ -116,13 +116,21 @@ class DataProvider:
 class ComponentsDataProvider:
     def __init__(self):
         pass
-
-    def get_component_datas(self, component_id:str):
-
-        diag_path = getattr(FaultsDiagLocations, component_id)
-        comp_data = "Nothing to provide"
-        comp_data = get_cpu_load(interval=1)
-
+ 
+    def get_data_id(self, component_id:str, data_id:str):
         
-        return str(comp_data)
+        f_cpu_load = get_cpu_load()
+        
+        data_id_value = {}
+        diag_path = getattr(DataDiagLocations, component_id)
+
+        with open(diag_path,'r') as file:
+            comp_data = yaml.safe_load(file)
+
+        for data in comp_data.get('data', []):
+            if data_id == data.get('id'):
+                # enrich data with CPU load or other info
+                data_id_value.update(DataValue.model_validate(data))
+
+        return data_id_value
 

@@ -1,14 +1,15 @@
 import psutil
 import sys, os
 
-def get_cpu_load(interval=1.0):
+
+
+def get_cpu_load():
     """
     Returns CPU usage percentage over the given interval.
     :param interval: Time in seconds to sample CPU usage.
     """
     try:
-        if interval <= 0:
-            raise ValueError("Interval must be greater than 0.")
+        interval=1.0
         cpu_percent = psutil.cpu_percent(interval=interval)
         return cpu_percent
     except Exception as e:
