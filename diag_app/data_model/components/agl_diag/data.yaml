@@ -1,7 +1,13 @@
 data:
 - category: currentdata
   data:
-    load Percentage: 0.3
+    load Percentage: 0.6
   group: virtual machine
   id: cpuload
   name: CPU Load
+- category: currentdata
+  data:
+    memory usage: null
+  group: virtual machine
+  id: memory
+  name: Memory usage
