@@ -32,7 +32,18 @@ def get_datas_from_application(app_id:str):
 @routes.route("/apps/<app_id>/data/<data_id>", methods=['GET'])
 def get_data_id_from_application(app_id:str,data_id:str):
     """Return data inside Application"""
+    app_uri = APPs_ADDR[app_id]
+    app_url = app_uri + "apps/" + app_id + "/data/" + data_id
     try:
+
+        # Send PUT request to the local C++ HTTP service e.g hvac
+        Data_resp = requests.get(app_url, timeout=1.0)
+        Data_resp.raise_for_status()
+
+        # save data to yaml format with data_saver
+        data_saver.save_data_by_data_id(app_id,data_id,Data_resp.json())
+
+        # Reading apps data YAML file
         data_entry = data_provider.get_data_by_id(app_id, data_id)
 
        # Return same response and content type to client return Response(resp.text, content_type=resp.headers.get("Content-Type", "application/json"))
