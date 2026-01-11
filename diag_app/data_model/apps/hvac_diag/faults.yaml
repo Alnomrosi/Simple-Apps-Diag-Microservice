@@ -8,8 +8,6 @@ faults:
     aggregatedStatus: inactive
   symptom: The Front left HVAC system exceeded the threshold temperature
   symptom_translation_id: hvac_symptom_exceeded_temp_threshold
-
-other_faults:
 - code: FrontRightTempExceeded
   display_code: Err2
   fault_name: Right Temp Exceeded Temperature Threshold
