@@ -62,18 +62,21 @@ class DataProvider:
 
     # faults
 
-    def get_faults(self, app_id:str):
+    def get_faults(self, app_id: str):
         faults = []
         diag_path = getattr(FaultsDiagLocations, app_id)
         
         # Reading data/xx.yaml YAML file
         with open(diag_path, 'r') as file:
             app_diag_yaml = yaml.safe_load(file)
-    
-        # data_diag = app_diag_yaml[AppNames.hvac]
 
         for faults_details in app_diag_yaml['faults']:
-            faults.append(Fault.model_validate(faults_details))
+            # Navigate the dictionary: status -> aggregatedStatus
+            # Using .get() prevents the code from crashing if a key is missing
+            status_info = faults_details.get('status', {})
+            
+            if status_info.get('aggregatedStatus') == 'active':
+                faults.append(Fault.model_validate(faults_details))
         
         resp_faults = ListOfFaults(items=faults)
 
